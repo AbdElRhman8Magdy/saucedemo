@@ -1,18 +1,56 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, request } from '@playwright/test';
 
+
+import LoginPage from '../Pages/LoginPage';
+import UserSauce from '../models/UserSauce';
+import User from '../models/User';
+import User1 from '../models/UserSauce';
+import InventoryPage from '../Pages/InventoryPage';
+
+
+test.describe('Sauce Login', () => {
+  test.beforeEach(async ({ page, request, context }) => {
+    // Navigate to the page before each test
+   const loginPage = new LoginPage(page,);
+   await loginPage.Load();
+ 
+    })
 test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+  
+    const loginPage = new LoginPage(page,); 
+    await loginPage.loginWithValid(new UserSauce());
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
 });
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test('Invalid Password', async ({ page }) => {
+  
+    const loginPage = new LoginPage(page,); 
+    await loginPage.loginInValidPassword(new UserSauce());
+})
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
+test('Invalid Email', async ({ page }) => {
+  
+    const loginPage = new LoginPage(page,); 
+    await loginPage.loginInValidEmail(new UserSauce());
+})
+    })
 
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+
+    test.describe('Sauce Inventory', () => {
+  test.beforeEach(async ({ page, request, context }) => {
+    // Navigate to the page before each test
+   const loginPage = new LoginPage(page,);
+   await loginPage.Load();
+   await loginPage.loginWithValid(new UserSauce());
+ 
+    })
+test('Inventory Page', async ({ page }) => {
+  
+    const inventoryPage = new InventoryPage(page,);
+    await inventoryPage.SortLoPrice(new UserSauce());
+
+    
+
 });
+    })
+
