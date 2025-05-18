@@ -19,20 +19,26 @@ test.describe('Sauce Login', () => {
    await loginPage.Load();
  
     })
-test('has title', async ({ page }) => {
+test(' Login', {
+  tag: '@smoke',
+}, async ({ page }) => {
   
     const loginPage = new LoginPage(page,); 
     await loginPage.loginWithValid(new UserSauce());
 
 });
 
-test('Invalid Password', async ({ page }) => {
+test(' Invalid Password', {
+  tag: '@negative',
+}, async ({ page }) => {
   
     const loginPage = new LoginPage(page,); 
     await loginPage.loginInValidPassword(new UserSauce());
 })
 
-test('Invalid Email', async ({ page }) => {
+test(' Invalid Email', {
+  tag: '@negative',
+}, async ({ page }) => {
   
     const loginPage = new LoginPage(page,); 
     await loginPage.loginInValidEmail(new UserSauce());
@@ -48,7 +54,9 @@ test('Invalid Email', async ({ page }) => {
    await loginPage.loginWithValid(new UserSauce());
  
     })
-test('Inventory Page - add cheapest item', async ({ page }) => {
+test(' Inventory Page - add cheapest item', {
+  tag: '@smoke',
+}, async ({ page }) => {
   
     const inventoryPage = new InventoryPage(page,);
     await inventoryPage.SortLoPrice(new UserSauce());
@@ -58,7 +66,9 @@ test('Inventory Page - add cheapest item', async ({ page }) => {
     
 
 });
-test('Confirm order', async ({ page }) => {
+test(' Confirm order', {
+  tag: '@smoke',
+}, async ({ page }) => {
   
    const cartPage = new CartPage(page);
     const inventoryPage = new InventoryPage(page);
@@ -82,7 +92,9 @@ test('Confirm order', async ({ page }) => {
 
 
 
-    test.describe('End-to-End Purchase Flow', () => {
+    test.describe(' End-to-End Purchase Flow', {
+  tag: '@smoke',
+}, () => {
   test('Successful order placement', async ({ page }) => {
     const loginPage = new LoginPage(page);
     const inventoryPage = new InventoryPage(page);
@@ -107,7 +119,9 @@ test('Confirm order', async ({ page }) => {
     await confirmationPage.verifySuccessMessage();
   });
 
-  test('Negative login test with invalid credentials', async ({ page }) => {
+  test(' Negative login test with invalid credentials', {
+  tag: '@negative',
+}, async ({ page }) => {
     const loginPage = new LoginPage(page);
     await page.goto('https://www.saucedemo.com');
     await loginPage.login(testData.invalidUser.username, testData.invalidUser.password);

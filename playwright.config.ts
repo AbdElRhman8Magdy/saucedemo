@@ -51,6 +51,20 @@ export default defineConfig({
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
+    {
+      name: 'staging',
+      use: {
+        baseURL: 'https://www.saucedemo.com',
+      },
+      retries: 2,
+    },
+    {
+      name: 'production',
+      use: {
+        baseURL: 'production.example.com',
+      },
+      retries: 0,
+    },
 
     // {
     //   name: 'firefox',

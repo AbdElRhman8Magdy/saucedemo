@@ -28,6 +28,13 @@ This project demonstrates an end-to-end test automation framework built using **
     npx playwright test tests/endToEndPurchase.spec.ts
 4.**Run tests in a specific browser:**
     npx playwright test --project=chromium
+5. **Tagging**
+    npx playwright test --grep @smoke
+    npx playwright test --grep @negative
+6. **Environment configuration support**
+    npx playwright test --project=staging
+    npx playwright test --project=production
+
 
 🏗 **Folder Structure**
 .
