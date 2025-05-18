@@ -2,9 +2,11 @@ import { APIRequestContext, BrowserContext, expect, Page } from "@playwright/tes
 import User from "../models/UserSauce";
 
 export default class LoginPage{
+ 
     private page:Page;
     private request?:APIRequestContext;
     private context?:BrowserContext;
+  
     constructor(page:Page,requst?:APIRequestContext,context?:BrowserContext){
         this.page=page;
         this.request=requst;
@@ -31,7 +33,7 @@ export default class LoginPage{
      async Load(){
         await this.page.goto('/')
        }
-    async loginWithValid(user:User){
+    async loginWithValid(user: User){
         await this.emailInput.fill(user.getEmailSauce())
         await this.passwordInput.fill(user.getPasswordSauce())
         await this.SubmitBtn.click()
@@ -52,4 +54,14 @@ export default class LoginPage{
         await this.SubmitBtn.click()
         await expect(this.ErrorMessage).toContainText(user.getInvalidLogin());
        }
+
+       async login(username: string, password: string) {
+    await this.page.fill('#user-name', username);
+    await this.page.fill('#password', password);
+    await this.page.click('#login-button');
+  }
+
+  async verifyLoginError() {
+    await expect(this.page.locator('[data-test="error"]')).toBeVisible();
+  }
 }

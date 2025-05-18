@@ -6,6 +6,12 @@ export default class UserSauce{
     private passwordsauc:string;
     private InvalidLogin:string;
     private LowPrice:string;
+    private SelectItemName1:string;
+    private SelectItemName2:string;
+    private SelectItemPrice1:string;
+    private SelectItemPrice2:string;
+    static setSelectItemName1: any;
+    static setSelectItemName1temPrice1: any;
 
 
 
@@ -30,5 +36,17 @@ export default class UserSauce{
     getLowPrice(){
         return this.LowPrice
     }
+    setSelectItemName1(SelectItemName1:string){
+        this.SelectItemName1=SelectItemName1;
+    }
+    setSelectItemName2(SelectItemName2:string){
+        this.SelectItemName2=SelectItemName2;
+    }
+    setSelectItemPrice1(SelectItemPrice1:string){
+        this.SelectItemPrice1=SelectItemPrice1;
+    }
+    setSelectItemPrice2(SelectItemPrice2:string){
+        this.SelectItemPrice2=SelectItemPrice2;
+    }   
    
 }

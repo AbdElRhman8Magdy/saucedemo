@@ -1,5 +1,6 @@
 import { APIRequestContext, BrowserContext, expect, Page } from "@playwright/test";
 import User from "../models/UserSauce";
+import UserSauce from "../models/UserSauce";
 
 export default class InventoryPage{
     private page:Page;
@@ -38,6 +39,9 @@ export default class InventoryPage{
       const price = parseFloat(priceText.replace('$', ''));
       await items.nth(i).locator('button').click();
       selectedItems.push({ name, price });
+    //   UserSauce.setSelectItemName1(name);
+    //   UserSauce.setSelectItemName1temPrice1(priceText);
+      console.log(`Added item: ${name} with price: ${priceText}`);
     }
 
     return selectedItems;
